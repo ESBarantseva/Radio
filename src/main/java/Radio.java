@@ -1,64 +1,71 @@
 public class Radio {
-    private final int minNumber = 0;
-    private final int maxNumber = 9;
-    private int currentNumber;
-    private final int minVolume = 0;
-    private final int maxVolume = 100;
-    private int currentVolume;
+    private int currentStation;
+    private int volume;
 
-    public int getCurrentNumber() {
-        return currentNumber;
+
+    public int maxStation;
+
+    public Radio() {
+        this.maxStation = 9;
     }
 
-    public void setCurrentNumber(int newCurrentNumber) {
-        if (newCurrentNumber < minNumber) {
+    public Radio(int stationsCount) {
+        this.maxStation = stationsCount - 1;
+    }
+
+    public int getCurrentStation() {
+        return currentStation;
+    }
+
+    public void setCurrentStation(int newCurrentStation) {
+        if (newCurrentStation < 0) {
             return;
         }
-        if (newCurrentNumber > maxNumber) {
+        if (newCurrentStation > maxStation) {
             return;
         }
-        currentNumber = newCurrentNumber;
+        currentStation = newCurrentStation;
     }
 
-    public void nextNumber() {
-        if (currentNumber < maxNumber) {
-            currentNumber = currentNumber + 1;
+    public void next() {
+        if (currentStation == maxStation) {
+            currentStation = 0;
         } else {
-            currentNumber = minNumber;
+            currentStation++;
         }
     }
 
-    public void prevNumber() {
-        if (currentNumber > minNumber) {
-            currentNumber = currentNumber - 1;
+    public void prev() {
+        if (currentStation == 0) {
+            currentStation = maxStation;
         } else {
-            currentNumber = maxNumber;
+            currentStation--;
         }
     }
 
-    public int getCurrentVolume() {
-        return currentVolume;
+    public int getVolume() {
+        return volume;
     }
 
-    public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < minVolume) {
-            newCurrentVolume = minVolume;
+    public void setVolume(int newVolume) {
+        if (newVolume < 0) {
+            return;
         }
-        if (newCurrentVolume > maxVolume) {
-            newCurrentVolume = maxVolume;
+        if (newVolume > 100) {
+            return;
         }
-        currentVolume = newCurrentVolume;
+        volume = newVolume;
     }
 
-    public void increaseVolume() {
-        if (currentVolume < maxVolume) {
-            currentVolume = currentVolume + 1;
+    public void upVolume() {
+        if (volume < 100) {
+            volume++;
         }
     }
 
-    public void reductionVolume() {
-        if (currentVolume > minVolume) {
-            currentVolume = currentVolume - 1;
+    public void downVolume() {
+        if (volume > 0) {
+            volume--;
         }
     }
 }
